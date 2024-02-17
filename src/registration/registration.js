@@ -83,7 +83,7 @@ function Registration() {
     if (!success) {
         return (
             <>
-                <h1>Register for cyber fitness test</h1>
+                <h1>Register for Cyber Fitness Test</h1>
                 <form className='reg-form-container' onSubmit={handleSubmission}>
 
                     <label className='reg-form-label' htmlFor='fname'> First Name: </label>
