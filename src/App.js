@@ -1,21 +1,23 @@
-import logo from './logo.svg';
+import logo from './assets/fit-coder.webp';
+import Registration from './registration/registration';
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
-  try {
-  console.log(process.env.current_env);
-  }
-  catch (error) {
-    console.log(error);
-  }
+
+  useEffect(() => {
+    console.log("blah!")
+  });
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Welcome Cyberkooolies.
+          Welcome to Cyber Fitness.
         </p>
       </header>
+      <Registration/>
     </div>
   );
 }
