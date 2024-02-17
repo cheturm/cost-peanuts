@@ -1,0 +1,66 @@
+$error-color: red;
+$flexbox-color: #f9f9f9;
+$sucess-color: rgb(138, 233, 138);
+$buttton-color: #3498db;
+.reg-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $flexbox-color;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .reg-form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+    .reg-form-input {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .reg-form-input-error {
+        width: 80%;
+        padding: 10px;
+        border: 1px solid $error-color;
+        border-radius: 4px;
+    }
+    .reg-form-input:focus {
+        border-color: skyblue;
+        outline: none;
+
+    }
+    .error-message{
+        color: $error-color;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .reg-submit-buttor {
+        width: 100%;
+        /* Full width of the container */
+        padding: 10px;
+        /* Padding inside the button */
+        background-color: #3498db;
+        /* Blue background */
+        color: white;
+        /* White text */
+        border: none;
+        /* No border */
+        border-radius: 4px;
+        /* Slightly rounded corners */
+        cursor: pointer;
+        /* Pointer cursor on hover */
+        font-size: 16px;
+        /* Larger font size */
+    }
+}
+.reg-success-box{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $sucess-color;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
