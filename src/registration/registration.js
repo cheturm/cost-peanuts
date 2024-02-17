@@ -19,17 +19,17 @@ function Registration() {
 
     // Simple email validation
     const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex found online needs tobe refined
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
         return re.test(email);
     };
     // Simple mobile number validation
     const validateMobile = (mobile) => {
-        const re = /^\d{10}$/; // regex found online needs tobe refined
+        const re = /^\d{10}$/; 
         return re.test(mobile);
     }
     // Simple name validation
     const validateName = (name) => {
-        const re = /^[a-zA-Z]+$/; // regex found online needs tobe refined
+        const re = /^[a-zA-Z]+$/; 
         return re.test(name);
     }
 
