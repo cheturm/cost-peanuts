@@ -21,22 +21,29 @@ function Registration() {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex found online needs tobe refined
         return re.test(email);
     };
+    // Simple mobile number validation
     const validateMobile = (mobile) => {
         const re = /^\d{10}$/; // regex found online needs tobe refined
         return re.test(mobile);
     }
+    // Simple name validation
+    const validateName = (name) => {
+        const re = /^[a-zA-Z]+$/; // regex found online needs tobe refined
+        return re.test(name);
+    }
+
     // Handle form submission
     const handleSubmission = (e) => {
         e.preventDefault();
         let regErrors = {};
 
         // Validate first name
-        if (!formData.fname.trim()) {
+        if (!formData.fname.trim() || !validateName(formData.fname)) {
             regErrors.fname = 'Please enter first name';
         }
 
         // Validate last name
-        if (!formData.lname.trim()) {
+        if (!formData.lname.trim() || !validateName(formData.lname)) {
             regErrors.lname = 'Please enter last name';
         }
 
@@ -88,44 +95,52 @@ function Registration() {
 
                     <label className='reg-form-label' htmlFor='fname'> First Name: </label>
                     <input
+                        placeholder='eg: John'
                         onChange={handleChange}
                         className={errors.fname ? "reg-form-input-error" : "reg-form-input"}
                         type="text"
                         name="fname"
                         id='fname'
+                        maxLength={20}
                         ref={el => inputRefs.current['fname'] = el}
                     />
                     {errors.fname && <p aria-live="polite" className='error-message'>{errors.fname}</p>}
 
                     <label className='reg-form-label' htmlFor='lname'> Last Name: </label>
                     <input
+                        placeholder='eg: Smith'
                         onChange={handleChange}
                         className={errors.lname ? "reg-form-input-error" : "reg-form-input"}
                         type="text"
                         name="lname"
                         id='lname'
+                        maxLength={20}
                         ref={el => inputRefs.current['lname'] = el}
                     />
                     {errors.lname && <p aria-live="polite" className='error-message'>{errors.lname}</p>}
 
                     <label className='reg-form-label' htmlFor='mobile'> Mobile Number: </label>
                     <input
+                        placeholder='eg: 1234567890'
                         onChange={handleChange}
                         className={errors.mobile ? "reg-form-input-error" : "reg-form-input"}
                         type="tel"
                         name="mobile"
                         id='mobile'
+                        maxLength={10}
                         ref={el => inputRefs.current['mobile'] = el}
                     />
                     {errors.mobile && <p aria-live="polite" className='error-message'>{errors.mobile}</p>}
 
                     <label className='reg-form-label' htmlFor='email'> Email Address: </label>
                     <input
+                        placeholder='eg: john@cf.com'
                         onChange={handleChange}
                         className={errors.email ? "reg-form-input-error" : "reg-form-input"}
                         type="text"
                         name="email"
                         id='email'
+                        maxLength={50}
                         ref={el => inputRefs.current['email'] = el}
                     />
                     {errors.email && <p aria-live="polite" className='error-message'>{errors.email}</p>}
