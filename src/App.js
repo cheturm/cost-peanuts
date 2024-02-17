@@ -1,4 +1,4 @@
-import logo from './assets/fit-coder.webp';
+import logo from './assets/fit-coder.png';
 import Registration from './registration/registration';
 import './App.css';
 import { useEffect } from 'react';
