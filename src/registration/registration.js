@@ -9,7 +9,8 @@ function Registration() {
         fname: '',
         lname: '',
         email: '',
-        mobile: ''
+        mobile: '',
+        formatedMobile: '',
     });
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState(false);
@@ -73,11 +74,43 @@ function Registration() {
     };
 
     const handleChange = (e) => {
+        // console.log(e.target.name);
+        if (e.target.name === 'mobile') {
+            handleMobileChange(e);
+        }else{
+            const { name, value } = e.target;
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
+    
+            // removing errors for the field on change
+            if (errors[name]) {
+                setErrors((prev) => ({
+                    ...prev,
+                    [name]: '',
+                }));
+            }
+        }
+       
+    }
+
+    const handleMobileChange = (e) => {
+        let formattedNumber= '';
         const { name, value } = e.target;
+        const numbers = value.replace(/\D/g, '');
+        if (numbers.length < 4) {
+            formattedNumber = numbers;
+          } else if (numbers.length < 7) {
+            formattedNumber = `(${numbers.slice(0, 3)}) ${numbers.slice(3)}`;
+          } else {
+            formattedNumber = `(${numbers.slice(0, 3)}) ${numbers.slice(3, 6)}-${numbers.slice(6)}`;
+          }
+        // console.log(numbers, formattedNumber);
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
-        }));
+            [name]: numbers,
+            formatedMobile: formattedNumber,}));
 
         // removing errors for the field on change
         if (errors[name]) {
@@ -87,6 +120,7 @@ function Registration() {
             }));
         }
     }
+
     if (!success) {
         return (
             <>
@@ -121,14 +155,15 @@ function Registration() {
 
                     <label className='reg-form-label' htmlFor='mobile'> Mobile Number: </label>
                     <input
-                        placeholder='eg: 1234567890'
+                        placeholder='eg: (123) 456-7890'
                         onChange={handleChange}
                         className={errors.mobile ? "reg-form-input-error" : "reg-form-input"}
                         type="tel"
                         name="mobile"
                         id='mobile'
-                        maxLength={10}
+                        maxLength={14}
                         ref={el => inputRefs.current['mobile'] = el}
+                        value={formData.formatedMobile}
                     />
                     {errors.mobile && <p aria-live="polite" className='error-message'>{errors.mobile}</p>}
 
