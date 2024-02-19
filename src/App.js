@@ -1,7 +1,7 @@
-import logo from './assets/fit-coder.png';
-import Registration from './registration/registration';
+
 import './App.css';
 import { useEffect } from 'react';
+import Login from './Login/login';
 
 function App() {
 
@@ -10,15 +10,7 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Cyber Fitness.
-        </p>
-      </header>
-      <Registration/>
-    </div>
+      <Login/>
   );
 }
 

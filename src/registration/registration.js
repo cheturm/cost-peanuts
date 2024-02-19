@@ -1,7 +1,5 @@
-import React from 'react';
 import './registration.scss';
 import { useState, useRef } from 'react';
-
 
 function Registration() {
 
@@ -11,6 +9,8 @@ function Registration() {
         email: '',
         mobile: '',
         formatedMobile: '',
+        interests: '',
+        currentInterest: '',
     });
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState(false);
@@ -19,17 +19,17 @@ function Registration() {
 
     // Simple email validation
     const validateEmail = (email) => {
-        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return re.test(email);
     };
     // Simple mobile number validation
     const validateMobile = (mobile) => {
-        const re = /^\d{10}$/; 
+        const re = /^\d{10}$/;
         return re.test(mobile);
     }
     // Simple name validation
     const validateName = (name) => {
-        const re = /^[a-zA-Z]+$/; 
+        const re = /^[a-zA-Z]+$/;
         return re.test(name);
     }
 
@@ -77,13 +77,14 @@ function Registration() {
         // console.log(e.target.name);
         if (e.target.name === 'mobile') {
             handleMobileChange(e);
-        }else{
+        }
+        else {
             const { name, value } = e.target;
             setFormData((prev) => ({
                 ...prev,
                 [name]: value,
             }));
-    
+
             // removing errors for the field on change
             if (errors[name]) {
                 setErrors((prev) => ({
@@ -92,25 +93,40 @@ function Registration() {
                 }));
             }
         }
-       
-    }
 
+    }
+    const handleInterests = () => {
+        let intresting = '';
+        if (formData.interests === '') {
+            intresting = "#" + formData.currentInterest;
+        } else {
+            intresting = formData.interests + ", #" + formData.currentInterest;
+        }
+
+        setFormData((prev) => ({
+            ...prev,
+            ['interests']: intresting,
+            ['currentInterest']: '',
+        }));
+
+    }
     const handleMobileChange = (e) => {
-        let formattedNumber= '';
+        let formattedNumber = '';
         const { name, value } = e.target;
         const numbers = value.replace(/\D/g, '');
         if (numbers.length < 4) {
             formattedNumber = numbers;
-          } else if (numbers.length < 7) {
+        } else if (numbers.length < 7) {
             formattedNumber = `(${numbers.slice(0, 3)}) ${numbers.slice(3)}`;
-          } else {
+        } else {
             formattedNumber = `(${numbers.slice(0, 3)}) ${numbers.slice(3, 6)}-${numbers.slice(6)}`;
-          }
+        }
         // console.log(numbers, formattedNumber);
         setFormData((prev) => ({
             ...prev,
             [name]: numbers,
-            formatedMobile: formattedNumber,}));
+            formatedMobile: formattedNumber,
+        }));
 
         // removing errors for the field on change
         if (errors[name]) {
@@ -124,7 +140,7 @@ function Registration() {
     if (!success) {
         return (
             <>
-                <h1>Register for Cyber Fitness Test</h1>
+                <h1 className='reg-header'>Register for Cyber Fitness Test</h1>
                 <form className='reg-form-container' onSubmit={handleSubmission}>
 
                     <label className='reg-form-label' htmlFor='fname'> First Name: </label>
@@ -180,7 +196,22 @@ function Registration() {
                     />
                     {errors.email && <p aria-live="polite" className='error-message'>{errors.email}</p>}
 
-                    <button className="reg-submit-buttor" type="submit">Submit</button>
+                    <label className='reg-form-label' htmlFor='currentInterest'> Interest: </label>
+                    <input
+                        placeholder='eg: music'
+                        onChange={handleChange}
+                        className={errors.interests ? "reg-form-input-error" : "reg-form-input-interests"}
+                        type="text"
+                        name="currentInterest"
+                        id='currentInterest'
+                        value={formData.currentInterest}
+                        maxLength={50}
+                        ref={el => inputRefs.current['email'] = el}
+                    />
+                    <button className='reg-add-button' type='button' onClick={handleInterests}>Add</button>
+                    {formData.interests && <p aria-live="polite">{formData.interests}</p>}
+                    {errors.interests && <p aria-live="polite" className='error-message'>{errors.interests}</p>}
+                    <button className="reg-submit-button" type="submit">Submit</button>
                 </form>
             </>
         );
@@ -192,7 +223,6 @@ function Registration() {
             </div>
         );
     }
-
 }
 
 export default Registration;

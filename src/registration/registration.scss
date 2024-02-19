@@ -2,6 +2,12 @@ $error-color: red;
 $flexbox-color: #f9f9f9;
 $sucess-color: rgb(138, 233, 138);
 $buttton-color: #3498db;
+.reg-header{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
 .reg-form-container {
     max-width: 400px;
     margin: 0 auto;
@@ -16,6 +22,13 @@ $buttton-color: #3498db;
     }
     .reg-form-input {
         width: 80%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .reg-form-input-interests {
+        width: 60%;
         padding: 10px;
         margin-bottom: 20px;
         border: 1px solid #ccc;
@@ -37,23 +50,26 @@ $buttton-color: #3498db;
         font-size: 14px;
         margin-top: 5px;
     }
-    .reg-submit-buttor {
-        width: 100%;
-        /* Full width of the container */
+    .reg-add-button{
+        width: 20%;
         padding: 10px;
-        /* Padding inside the button */
-        background-color: #3498db;
-        /* Blue background */
+        background-color: $buttton-color;
         color: white;
-        /* White text */
         border: none;
-        /* No border */
         border-radius: 4px;
-        /* Slightly rounded corners */
         cursor: pointer;
-        /* Pointer cursor on hover */
         font-size: 16px;
-        /* Larger font size */
+        margin-left: 10px;
+    }
+    .reg-submit-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
     }
 }
 .reg-success-box{
