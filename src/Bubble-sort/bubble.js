@@ -27,11 +27,7 @@ const Bubble = () => {
         // };
     }, [array]);
 
-    const clearAllIntervals = () => {
-        // Clear all intervals
-        intervalId.current.forEach(clearInterval);
-        intervalId.current = []; // Reset the ref to an empty array
-      };
+
     // Function to generate a new array of random numbers
     const resetArray = () => {
         const newArray = Array.from({ length: 50 }, () => Math.floor(Math.random() * 100) + 5);
